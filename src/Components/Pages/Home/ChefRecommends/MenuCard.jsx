@@ -8,7 +8,7 @@ const MenuCard = ({menu}) => {
           alt=""
         />
       </figure>
-      <div className="card-body text-center">
+      <div className="card-body text-center font-inter">
         <h2 className="text-2xl font-bold">{name}</h2>
         <p className="text-[#151515] text-base">{recipe}</p>
         <div className="card-actions justify-center mt-5">
