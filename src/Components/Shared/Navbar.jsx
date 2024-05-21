@@ -7,6 +7,7 @@ const Navbar = () => {
     <NavLink to='/dashboard' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>DASHBOARD</NavLink>
     <NavLink to='/menu' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>OUR MENU</NavLink>
     <NavLink to='/order/salad' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>ORDER FOOD</NavLink>
+    <NavLink to='/login' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>LogIn</NavLink>
     </>
   return (
     <div className="navbar fixed z-10 bg-opacity-30 bg-[#15151580] text-white max-w-screen-xl">
