@@ -1,14 +1,80 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { FaCartPlus } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
-    const navMenu=<>
-    <NavLink to='/' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>HOME</NavLink>
-    <NavLink to='/contact'>CONTACT US</NavLink>
-    <NavLink to='/dashboard' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>DASHBOARD</NavLink>
-    <NavLink to='/menu' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>OUR MENU</NavLink>
-    <NavLink to='/order/salad' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>ORDER FOOD</NavLink>
-    <NavLink to='/login' className={({isActive})=> isActive?'text-[#CD9003] font-bold':''}>LogIn</NavLink>
+  const { user, logOut } = useContext(AuthContext);
+  const [cart]=useCart();
+  console.log(user);
+  const handleLogOut = () => {
+    logOut();
+  };
+  const navMenu = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "text-[#CD9003] font-bold" : ""
+        }
+      >
+        HOME
+      </NavLink>
+      <NavLink to="/contact">CONTACT US</NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? "text-[#CD9003] font-bold" : ""
+        }
+      >
+        DASHBOARD
+      </NavLink>
+      <NavLink
+        to="/menu"
+        className={({ isActive }) =>
+          isActive ? "text-[#CD9003] font-bold" : ""
+        }
+      >
+        OUR MENU
+      </NavLink>
+      <NavLink
+        to="/order/salad"
+        className={({ isActive }) =>
+          isActive ? "text-[#CD9003] font-bold" : ""
+        }
+      >
+        ORDER FOOD
+      </NavLink>
+      <NavLink
+        to="/order/salad"
+        className={({ isActive }) =>
+          isActive ? "text-[#CD9003] font-bold" : ""
+        }
+      >
+        <button className="btn">
+        <FaCartPlus />
+          <div className="badge badge-secondary">+{cart.length}</div>
+        </button>
+      </NavLink>
+      {user ? (
+        <>
+          <button onClick={handleLogOut} className="btn btn-outline">
+            Logout
+          </button>
+        </>
+      ) : (
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            isActive ? "text-[#CD9003] font-bold" : ""
+          }
+        >
+          LogIn
+        </NavLink>
+      )}
     </>
+  );
   return (
     <div className="navbar fixed z-10 bg-opacity-30 bg-[#15151580] text-white max-w-screen-xl">
       <div className="navbar-start">
@@ -33,7 +99,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-           {navMenu}
+            {navMenu}
           </ul>
         </div>
         <div className="font-cinzel text-center">
@@ -42,9 +108,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
-        {navMenu}
-        </ul>
+        <ul className="menu menu-horizontal px-1 gap-2">{navMenu}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser,updateUserProfile } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -16,6 +16,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        updateUserProfile(data.name,data.photo)
       })
       .catch((error) => {
         console.log(error);
@@ -45,6 +46,19 @@ const SignUp = () => {
                 className="input input-bordered"
                 required
                 {...register("name")}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                placeholder="photo url"
+                name="name"
+                className="input input-bordered"
+                required
+                {...register("photo")}
               />
             </div>
             <div className="form-control">
